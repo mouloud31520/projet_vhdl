@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Mon Sep 20 10:43:58 2021
+Analysis & Synthesis Status : Successful - Thu Sep 23 11:48:54 2021
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : projet_vhdl
-Top-level Entity Name : nios_mcu
+Top-level Entity Name : diviseur
 Family : Cyclone IV E
-Total logic elements : 1,850
-    Total combinational functions : 1,613
-    Dedicated logic registers : 1,050
-Total registers : 1050
-Total pins : 10
+Total logic elements : 26
+    Total combinational functions : 26
+    Dedicated logic registers : 16
+Total registers : 16
+Total pins : 4
 Total virtual pins : 0
-Total memory bits : 273,408
+Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0
 Total PLLs : 0
