@@ -14,7 +14,7 @@ entity comparateur is
 end entity comparateur;
 
 architecture rtl of comparateur is
--- on decl	are les variables de l'architecture avant le premier begin
+-- on declare les variables de l'architecture avant le premier begin
 
 begin
 	pcomparateur : process(valeur_a, valeur_b)
