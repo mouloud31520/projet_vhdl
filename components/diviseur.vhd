@@ -10,7 +10,8 @@ entity diviseur is
 	);
 	port (
 		Clock, Enable, Reset: in std_logic;
-		Impulse	: out std_logic
+		Prescaler: in std_logic_vector(P-1 downto 0);
+		GeneralOutput	: out std_logic_vector(2 downto 0)
 	);
 end entity diviseur;
 
@@ -22,7 +23,7 @@ architecture rtl of diviseur is
 
 --Prescaler: in std_logic_vector(P-1 downto 0) := 2;
 
-signal Prescaler: std_logic_vector(15 downto 0) := x"00ff";
+--signal Prescaler: std_logic_vector(15 downto 0) := x"00ff";
 signal reset_synchrone: std_logic; -- 1 pour reset synchrone et 0 pour asynchrone
 signal internal_reset : std_logic;
 signal sortie_comparateur : std_logic_vector (2 downto 0);
@@ -54,20 +55,23 @@ end component compteur;
 
 begin
 
-    J1: comparateur -- J1 est une instance du comparateur
-	generic map (N => P)
-	port map (valeur_a=>sortie_compteur, valeur_b=>prescaler, sortie_comparaison=>sortie_comparateur);
 
 	U1: compteur -- U1 est une instance du compteur
 	generic map (N => P)
 	port map (clk => Clock,  arst_n=>'1', en => '1', q => sortie_compteur, SRst => reset_synchrone);
 	
-
+	J1: comparateur -- J1 est une instance du comparateur
+	generic map (N => P)
+	port map (valeur_a=>sortie_compteur, valeur_b=>prescaler, sortie_comparaison=>sortie_comparateur);
+	
+	
 	--internal_areset_n <=   Reset or sortie_comparateur(1) or sortie_comparateur(2);
 	reset_synchrone <= Reset or sortie_comparateur(1) or sortie_comparateur(2);
 	
-	Impulse <=  sortie_comparateur(1);
-
+	-- le comparateur fonctionne en synchrone 
+	GeneralOutput(0) <=  sortie_comparateur(0);
+	GeneralOutput(1) <=  sortie_comparateur(1);
+	GeneralOutput(2) <=  sortie_comparateur(2);
 
 	
 	
