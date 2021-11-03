@@ -1,5 +1,5 @@
-Analysis & Elaboration report for projet_vhdl
-Thu Sep 30 09:24:00 2021
+Analysis & Synthesis report for projet_vhdl
+Thu Sep 30 10:43:53 2021
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -7,15 +7,22 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Elaboration Summary
-  3. Parallel Compilation
-  4. Parameter Settings for User Entity Instance: Top-level Entity: |diviseur
-  5. Parameter Settings for User Entity Instance: compteur:U1
-  6. Parameter Settings for User Entity Instance: comparateur:J1
-  7. Analysis & Elaboration Settings
-  8. Port Connectivity Checks: "compteur:U1"
-  9. Analysis & Elaboration Messages
- 10. Analysis & Elaboration Suppressed Messages
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. User-Specified and Inferred Latches
+  9. General Register Statistics
+ 10. Parameter Settings for User Entity Instance: Top-level Entity: |diviseur
+ 11. Parameter Settings for User Entity Instance: compteur:U1
+ 12. Parameter Settings for User Entity Instance: comparateur:J1
+ 13. Port Connectivity Checks: "compteur:U1"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
+ 17. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -39,73 +46,27 @@ refer to the applicable agreement for further details.
 
 
 +----------------------------------------------------------------------------------+
-; Analysis & Elaboration Summary                                                   ;
+; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Successful - Thu Sep 30 09:24:00 2021       ;
+; Analysis & Synthesis Status        ; Successful - Thu Sep 30 10:43:53 2021       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; projet_vhdl                                 ;
 ; Top-level Entity Name              ; diviseur                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; N/A until Partition Merge                   ;
-;     Total combinational functions  ; N/A until Partition Merge                   ;
-;     Dedicated logic registers      ; N/A until Partition Merge                   ;
-; Total registers                    ; N/A until Partition Merge                   ;
-; Total pins                         ; N/A until Partition Merge                   ;
-; Total virtual pins                 ; N/A until Partition Merge                   ;
-; Total memory bits                  ; N/A until Partition Merge                   ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
-; Total PLLs                         ; N/A until Partition Merge                   ;
+; Total logic elements               ; 11                                          ;
+;     Total combinational functions  ; 11                                          ;
+;     Dedicated logic registers      ; 3                                           ;
+; Total registers                    ; 3                                           ;
+; Total pins                         ; 9                                           ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-+----------------------------+-------------+
-
-
-+--------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |diviseur ;
-+----------------+-------+-------------------------------------------------+
-; Parameter Name ; Value ; Type                                            ;
-+----------------+-------+-------------------------------------------------+
-; P              ; 16    ; Signed Integer                                  ;
-+----------------+-------+-------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------+
-; Parameter Settings for User Entity Instance: compteur:U1 ;
-+----------------+-------+---------------------------------+
-; Parameter Name ; Value ; Type                            ;
-+----------------+-------+---------------------------------+
-; n              ; 16    ; Signed Integer                  ;
-+----------------+-------+---------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: comparateur:J1 ;
-+----------------+-------+------------------------------------+
-; Parameter Name ; Value ; Type                               ;
-+----------------+-------+------------------------------------+
-; n              ; 16    ; Signed Integer                     ;
-+----------------+-------+------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
 +------------------------------------------------------------------------------------------------------------+
-; Analysis & Elaboration Settings                                                                            ;
+; Analysis & Synthesis Settings                                                                              ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
@@ -191,6 +152,135 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                        ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                 ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------+---------+
+; components/compteur.vhd          ; yes             ; User VHDL File  ; /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/components/compteur.vhd    ;         ;
+; components/comparateur.vhd       ; yes             ; User VHDL File  ; /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/components/comparateur.vhd ;         ;
+; components/diviseur.vhd          ; yes             ; User VHDL File  ; /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/components/diviseur.vhd    ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                     ;
++---------------------------------------------+-------------------+
+; Resource                                    ; Usage             ;
++---------------------------------------------+-------------------+
+; Estimated Total logic elements              ; 11                ;
+;                                             ;                   ;
+; Total combinational functions               ; 11                ;
+; Logic element usage by number of LUT inputs ;                   ;
+;     -- 4 input functions                    ; 6                 ;
+;     -- 3 input functions                    ; 5                 ;
+;     -- <=2 input functions                  ; 0                 ;
+;                                             ;                   ;
+; Logic elements by mode                      ;                   ;
+;     -- normal mode                          ; 11                ;
+;     -- arithmetic mode                      ; 0                 ;
+;                                             ;                   ;
+; Total registers                             ; 3                 ;
+;     -- Dedicated logic registers            ; 3                 ;
+;     -- I/O registers                        ; 0                 ;
+;                                             ;                   ;
+; I/O pins                                    ; 9                 ;
+;                                             ;                   ;
+; Embedded Multiplier 9-bit elements          ; 0                 ;
+;                                             ;                   ;
+; Maximum fan-out node                        ; compteur:U1|Q1[0] ;
+; Maximum fan-out                             ; 6                 ;
+; Total fan-out                               ; 56                ;
+; Average fan-out                             ; 1.75              ;
++---------------------------------------------+-------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                           ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name      ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
+; |diviseur                  ; 11 (0)              ; 3 (0)                     ; 0           ; 0            ; 0       ; 0         ; 9    ; 0            ; |diviseur                ; diviseur    ; work         ;
+;    |comparateur:J1|        ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |diviseur|comparateur:J1 ; comparateur ; work         ;
+;    |compteur:U1|           ; 4 (4)               ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |diviseur|compteur:U1    ; compteur    ; work         ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                               ;
++----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
++----------------------------------------------------+---------------------+------------------------+
+; comparateur:J1|sortie_comparaison[1]               ; GND                 ; yes                    ;
+; comparateur:J1|sortie_comparaison[2]               ; GND                 ; yes                    ;
+; Number of user-specified and inferred latches = 2  ;                     ;                        ;
++----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 3     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |diviseur ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; P              ; 3     ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: compteur:U1 ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; n              ; 3     ; Signed Integer                  ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: comparateur:J1 ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; n              ; 3     ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------+
 ; Port Connectivity Checks: "compteur:U1"  ;
 +--------+-------+----------+--------------+
 ; Port   ; Type  ; Severity ; Details      ;
@@ -200,14 +290,42 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------+-------+----------+--------------+
 
 
-+---------------------------------+
-; Analysis & Elaboration Messages ;
-+---------------------------------+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 9                           ;
+; cycloneiii_ff         ; 3                           ;
+;     plain             ; 3                           ;
+; cycloneiii_lcell_comb ; 12                          ;
+;     normal            ; 12                          ;
+;         0 data inputs ; 1                           ;
+;         3 data inputs ; 5                           ;
+;         4 data inputs ; 6                           ;
+;                       ;                             ;
+; Max LUT depth         ; 3.00                        ;
+; Average LUT depth     ; 2.27                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:03     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Elaboration
+Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Sep 30 09:23:06 2021
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off projet_vhdl -c projet_vhdl --analysis_and_elaboration
+    Info: Processing started: Thu Sep 30 10:42:47 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off projet_vhdl -c projet_vhdl
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file components/bascule.vhd
@@ -337,6 +455,9 @@ Warning (10631): VHDL Process Statement warning at comparateur.vhd(20): inferrin
 Info (10041): Inferred latch for "sortie_comparaison[0]" at comparateur.vhd(20) File: /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/components/comparateur.vhd Line: 20
 Info (10041): Inferred latch for "sortie_comparaison[1]" at comparateur.vhd(20) File: /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/components/comparateur.vhd Line: 20
 Info (10041): Inferred latch for "sortie_comparaison[2]" at comparateur.vhd(20) File: /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/components/comparateur.vhd Line: 20
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "GeneralOutput[0]" is stuck at GND File: /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/components/diviseur.vhd Line: 14
+Info (286030): Timing-Driven Synthesis is running
 Warning (20013): Ignored 23 assignments for entity "altera_avalon_sc_fifo" -- entity does not exist in design
 Warning (20013): Ignored 64 assignments for entity "altera_merlin_master_agent" -- entity does not exist in design
 Warning (20013): Ignored 55 assignments for entity "altera_merlin_master_translator" -- entity does not exist in design
@@ -366,16 +487,24 @@ Warning (20013): Ignored 179 assignments for entity "nios_mcu_nios_cpu_cpu" -- e
 Warning (20013): Ignored 40 assignments for entity "nios_mcu_onchip_ram" -- entity does not exist in design
 Warning (20013): Ignored 22 assignments for entity "nios_mcu_pio_0" -- entity does not exist in design
 Info (144001): Generated suppressed messages file /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/output_files/projet_vhdl.map.smsg
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 30 warnings
-    Info: Peak virtual memory: 1256 megabytes
-    Info: Processing ended: Thu Sep 30 09:24:00 2021
-    Info: Elapsed time: 00:00:54
-    Info: Total CPU time (on all processors): 00:02:10
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "Enable" File: /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/components/diviseur.vhd Line: 12
+Info (21057): Implemented 20 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 6 input pins
+    Info (21059): Implemented 3 output pins
+    Info (21061): Implemented 11 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 34 warnings
+    Info: Peak virtual memory: 949 megabytes
+    Info: Processing ended: Thu Sep 30 10:43:53 2021
+    Info: Elapsed time: 00:01:06
+    Info: Total CPU time (on all processors): 00:02:23
 
 
-+--------------------------------------------+
-; Analysis & Elaboration Suppressed Messages ;
-+--------------------------------------------+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
 The suppressed messages can be found in /home/lepetitprince/Seafile/Education/Fac/M2_SME/VHDL/projet_vhdl/output_files/projet_vhdl.map.smsg.
 
 

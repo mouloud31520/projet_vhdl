@@ -3,15 +3,15 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 USE ieee.numeric_std.ALL;
 
-
+--le diviseur dure un cycle d'horloge
 entity diviseur is 
 	generic (
 	    P : integer := 16 --taille Prescaler
 	);
 	port (
 		Clock, Enable, Reset: in std_logic;
-		Prescaler: in std_logic_vector(P-1 downto 0);
-		GeneralOutput	: out std_logic_vector(2 downto 0)
+		Prescaler : in std_logic_vector(P-1 downto 0); --prescaler == (PSC + 1) : et doit etre  >=1 
+		DivOutput	: out std_logic
 	);
 end entity diviseur;
 
@@ -28,6 +28,7 @@ signal reset_synchrone: std_logic; -- 1 pour reset synchrone et 0 pour asynchron
 signal internal_reset : std_logic;
 signal sortie_comparateur : std_logic_vector (2 downto 0);
 signal sortie_compteur : std_logic_vector (P-1 downto 0);
+signal prescaler_value : std_logic_vector(P-1 downto 0);
 
 
 -- declaration des composants
@@ -45,34 +46,48 @@ end component comparateur;
 
 component compteur
 	 generic ( N : integer);
-    port (
-        clk, en, arst_n, SRst: in std_logic;
-        q   : out std_logic_vector (N-1 downto 0)
+	 port (
+            clk     : in std_logic; --horloge
+            mode    : in std_logic_vector (2 downto 0); -- (UP/DOWN - discret INPUT - CLOCK = > 0 - 0 - 0)  = > compteur up - source clk => 101 + compteur up source counter_input => 110
+            counter_input : in std_logic; -- autre siganl dont on doit compter les fronts montants
+            en      : in std_logic; --enable counting or decounting
+            arst_n  : in std_logic; --reset asynchrone et inverse (1 => pas de reset)
+            SRst    : in std_logic; --reset synchrone
+            counter_output   : out std_logic_vector (N-1 downto 0)
         );
 end component compteur;
 
 
 
+
+
 begin
+	
+	--prescaler_value <= Prescaler - 1; --on prends en compte le fait qu'on compte a partir de 0
 
+	U1: compteur 
+		generic map (N => P)
+		port map(
+          clk     => Clock, --horloge
+          mode    => "101",--(2 downto 0); -- (UP/DOWN - discret INPUT - CLOCK = > 0 - 0 - 0)  = > compteur up - source clk => 101 + compteur up source counter_input => 110
+          counter_input => '0', -- autre siganl dont on doit compter les fronts montants
+          en      => Enable, --enable counting or decounting
+          arst_n  => '1', --reset asynchrone et inverse (1 => pas de reset asynchrone)
+          SRst => reset_synchrone, --reset synchrone
+          counter_output  => sortie_compteur
+      );
 
-	U1: compteur -- U1 est une instance du compteur
-	generic map (N => P)
-	port map (clk => Clock,  arst_n=>'1', en => '1', q => sortie_compteur, SRst => reset_synchrone);
 	
 	J1: comparateur -- J1 est une instance du comparateur
 	generic map (N => P)
-	port map (valeur_a=>sortie_compteur, valeur_b=>prescaler, sortie_comparaison=>sortie_comparateur);
+	port map (valeur_a=>sortie_compteur, valeur_b=>Prescaler , sortie_comparaison=>sortie_comparateur); -- remove the 0
 	
 	
-	--internal_areset_n <=   Reset or sortie_comparateur(1) or sortie_comparateur(2);
 	reset_synchrone <= Reset or sortie_comparateur(1) or sortie_comparateur(2);
 	
 	-- le comparateur fonctionne en synchrone 
-	GeneralOutput(0) <=  sortie_comparateur(0);
-	GeneralOutput(1) <=  sortie_comparateur(1);
-	GeneralOutput(2) <=  sortie_comparateur(2);
-
+	DivOutput <=  sortie_comparateur(1) and Clock;
+	
 	
 	
 end architecture rtl;

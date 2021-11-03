@@ -23,7 +23,7 @@ begin
 			sortie_comparaison <= "010";
 		 elsif unsigned(valeur_a) > unsigned(valeur_b) then
 			sortie_comparaison <= "100";
-		 elsif unsigned(valeur_a) > unsigned(valeur_b) then
+		 elsif unsigned(valeur_a) < unsigned(valeur_b) then
 			sortie_comparaison <= "001";
 		 end if;	
 	end process pcomparateur;
