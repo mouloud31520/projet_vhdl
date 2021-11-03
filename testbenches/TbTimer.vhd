@@ -10,9 +10,10 @@ architecture rtl of TbTimer is
     signal Clk : std_logic;
     signal SRst: std_logic;
     signal TimerOverflow : std_logic;
-    signal TimerCounter : std_logic_vector(3 downto 0);
-    signal Prescaler : std_logic_vector (3 downto 0);
-    signal Autoreload: std_logic_vector (3 downto 0);
+    signal TimerCounter : std_logic_vector(15 downto 0);
+    signal Prescaler : std_logic_vector (15 downto 0);
+    signal Autoreload: std_logic_vector (15 downto 0);
+    signal CaptComp : std_logic_vector ( 15 downto 0);
 begin
     
     pClk: process
@@ -34,23 +35,27 @@ begin
     
 
     timer_inst : entity work.timer
-    generic map (
-        P => 4
-    )
+    generic map (P => 16 )
     port map(
         Clock   => Clk,
         Enable  => '1',
+        Enable_PWM => '1',
         Reset   => Srst,
+        Capture_Compare => CaptComp,
         Prescaler   => Prescaler, --prescaler == (PSC + 1) 
         Autoreload  => Autoreload, --autoreload == (ARR + 1) 
         coUEV   => TimerOverflow, --counter overflow update event
         tim_counter => TimerCounter
     );
 
+       
+   CaptComp <= x"1387"; 
 
-    Prescaler <= x"4"; -- PSC = (Prescaler - 1) => Prescaler = PSC + 1 
-    -- donc là on divise par 5 pas par 4
-    Autoreload <= x"3"; -- ARR = (Autoreload - 1) => Autoreload = ARR + 1 
+   --Fpwm = Fclk / ( (Autoreload + 1) * (Prescaler + 1)
+
+   Prescaler <= x"0004";   -- Prescaler == PSC
+   Autoreload <= x"270F"; -- 40 en hexa
+                        -- ARR == Autoreload  
 
 
 end architecture rtl;

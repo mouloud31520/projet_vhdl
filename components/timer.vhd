@@ -17,9 +17,12 @@ entity timer is
 	);
 	port (
 		Clock, Enable, Reset: in std_logic;
+		Enable_PWM : in std_logic;
 		Prescaler		: in std_logic_vector(P-1 downto 0); --prescaler == (PSC + 1) 
-		Autoreload 	: in std_logic_vector(P-1 downto 0); --autoreload == (ARR + 1) 
+		Autoreload 	: in std_logic_vector(P-1 downto 0); --autoreload == (ARR + 1)
+		Capture_Compare : in std_logic_vector (P-1 downto 0);  
 		coUEV				: out std_logic; --counter overflow update event
+		PWM_output : out std_logic; 
 		tim_counter : out std_logic_vector(P-1 downto 0)
 	);
 end entity timer;
@@ -49,6 +52,10 @@ signal timer_counter : std_logic_vector (P-1 downto 0);
 signal counter_overflow_d : std_logic_vector (P-1 downto 0):=(others => '0'); --creer un signal *_d (pour "delay", retard) pour memmoriser l'etat precedent
 signal counter_overflow_re : std_logic; --creer un signal *_re (rising edge) pour 
 signal out_compa : std_logic_vector (2 downto 0) := (others => '0');
+
+signal PWM_outputs : std_logic_vector (2 downto 0);
+
+--signal pwm_mode : std_logic_vector (2 downto 0):= 000; --000 => A REMPLIR LES DIFFERENT MODES
 
 
 --------------------------------------------------------------------------------
@@ -122,8 +129,16 @@ begin
 		port map(
 			valeur_a => timer_counter, 
 			valeur_b =>  Autoreload,
-			sortie_comparaison => out_compa	
+			sortie_comparaison => out_compa
 		); -- sortie_comparaison : 100 => a > b ; 010 => a = b ; 001 => a < b
+
+	compa2: comparateur generic map (N => P	)
+		port map(
+			valeur_a => timer_counter,
+			valeur_b => Capture_Compare,
+			sortie_comparaison => PWM_outputs
+			
+		);
 
 
 
@@ -153,6 +168,7 @@ begin
 
 
 	tim_counter <= timer_counter;
+	PWM_output <= (PWM_outputs(0) or PWM_outputs(1)) and Enable_PWM;
 	
 	
 	
